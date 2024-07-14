@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +21,8 @@ namespace ApiArchitector
         private Point lastForm;
         private Point lastPanel;
         private Panel draggblePanel;
-        private ObservableCollection<string> panelList; 
+        private ObservableCollection<string> panelList;
+        private DialogForm dialog;
         public Form1()
         {
             InitializeComponent();
@@ -36,32 +38,61 @@ namespace ApiArchitector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            Panel panel = new Panel();
+            var name = string.Empty;
+            dialog = new DialogForm(panelList.ToList());
+            dialog.ShowDialog();
+            if (dialog.DialogResult == DialogResult.OK)
+            {
+                name = dialog.formName;
+
+                Panel panel = new Panel();
+
+                panel.BorderStyle = BorderStyle.FixedSingle;
+                panel.Tag = name;
+                panel.BackColor = Color.White;
+                draggblePanel = panel;
+                panel.Location = new System.Drawing.Point(100, 100);
+                panel.MouseDown += new MouseEventHandler(this.draggableButton_MouseDown);
+                panel.MouseMove += new MouseEventHandler(this.draggableButton_MouseMove);
+                panel.MouseUp += new MouseEventHandler(this.draggableButton_MouseUp);
+                panel.Width = 300;
+                panel.Height = 100;
+                
+                var combobox = new ComboBox();
+                var label1 = new Label();
+                var blockname = new Label();
+                blockname.Text = name;
+                blockname.Location = new Point(250, 70);
+                label1.Text = "следующий блок";
+                label1.Width = 200;
+                label1.Location = new System.Drawing.Point(5, 0);
+                combobox.Location = new System.Drawing.Point(5,25);
+                var button = new Button();
+                button.Text = "Исполнить";
+                button.Location = new Point(0,50);
+                button.Click += new EventHandler(btn_executeClicked);
+
+                combobox.DropDown += new EventHandler(comboboxDropDownEvent);
+
+
+                panel.Name = name;
+                panelList.Add(panel.Name);
+                panel.Controls.Add(button);
+                panel.Controls.Add(blockname);
+                panel.Controls.Add(label1);
+                panel.Controls.Add(combobox);
+                this.Controls.Add(panel);
+            }
+            else if (dialog.DialogResult == DialogResult.OK) {
+                return;
+            }
            
-            panel.BorderStyle = BorderStyle.FixedSingle;
-            draggblePanel = panel;
-            panel.Location = new System.Drawing.Point(100, 100);
-            panel.MouseDown += new MouseEventHandler(this.draggableButton_MouseDown);
-            panel.MouseMove += new MouseEventHandler(this.draggableButton_MouseMove);
-            panel.MouseUp += new MouseEventHandler(this.draggableButton_MouseUp);
-            panel.Width = 300;
-            panel.Height = 100;
-            
-            var combobox = new ComboBox();
-            
-            combobox.DropDown += new EventHandler(comboboxDropDownEvent);
-           
-            
-            panel.Name = Guid.NewGuid().ToString();
-            panelList.Add(panel.Name);
-           
-           
-            panel.Controls.Add(combobox);
-            this.Controls.Add(panel);
         }
 
-      
+        private void dialogClosed(object sender, FormClosingEventArgs e) { 
+            
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
            
@@ -96,6 +127,35 @@ namespace ApiArchitector
                 int dy = newCursor.Y - lastCursor.Y;
                 draggblePanel.Location = new Point(lastPanel.X + dx, lastPanel.Y + dy);
             }
+        }
+        private void btn_executeClicked(object sender, EventArgs e) {
+            Button btn = sender as Button;
+            Panel parenPanel = btn.Parent as Panel;
+            string currentPanelName = parenPanel.Name;
+            parenPanel.BackColor = Color.Green;
+            Point cbPoit = new Point(5, 25);
+            var cb = parenPanel.GetChildAtPoint(cbPoit) as ComboBox;
+            var nextpanelname = cb.SelectedItem.ToString();
+            Panel nextPanel = this.Controls.Find(nextpanelname, true)[0] as Panel;
+            MessageBox.Show("блок" + currentPanelName + " исполнен!");
+            parenPanel.BackColor = Color.White;
+           
+            Execute(nextPanel);
+            
+        }
+        private void Execute(Panel p) {
+            Point cbPoit = new Point(5, 25);
+            p.BackColor = Color.Green;
+           
+            var cb = p.GetChildAtPoint(cbPoit) as ComboBox; ;
+            var nextpanelName = cb.SelectedItem?.ToString();
+            MessageBox.Show("блок " + p.Name + " исполнен");
+            p.BackColor= Color.White;
+            if (nextpanelName != null) {
+                Panel nextPanel = this.Controls.Find(nextpanelName, true)[0] as Panel;
+                Execute(nextPanel);
+            }
+           
         }
         private void draggableButton_MouseDown(object sender, MouseEventArgs e) {
             if(sender.GetType() == typeof(Panel))
