@@ -47,16 +47,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 43);
+            this.textBox1.Location = new System.Drawing.Point(15, 43);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(272, 22);
+            this.textBox1.Size = new System.Drawing.Size(269, 22);
             this.textBox1.TabIndex = 1;
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(12, 71);
+            this.btn_ok.Location = new System.Drawing.Point(15, 71);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(132, 23);
+            this.btn_ok.Size = new System.Drawing.Size(129, 42);
             this.btn_ok.TabIndex = 2;
             this.btn_ok.Text = "OK";
             this.btn_ok.UseVisualStyleBackColor = true;
@@ -66,7 +66,7 @@
             // 
             this.btn_cancel.Location = new System.Drawing.Point(150, 71);
             this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(134, 23);
+            this.btn_cancel.Size = new System.Drawing.Size(134, 42);
             this.btn_cancel.TabIndex = 3;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -76,18 +76,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 175);
+            this.ClientSize = new System.Drawing.Size(288, 124);
             this.ControlBox = false;
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.MinimizeBox = false;
             this.Name = "DialogForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DialogForm";
+            this.Load += new System.EventHandler(this.DialogForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

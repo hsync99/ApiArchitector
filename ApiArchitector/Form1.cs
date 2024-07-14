@@ -55,19 +55,31 @@ namespace ApiArchitector
                 panel.MouseDown += new MouseEventHandler(this.draggableButton_MouseDown);
                 panel.MouseMove += new MouseEventHandler(this.draggableButton_MouseMove);
                 panel.MouseUp += new MouseEventHandler(this.draggableButton_MouseUp);
-                panel.Width = 300;
+                panel.Width = 150;
                 panel.Height = 100;
-                
+                var cfgbtn = new Button();
+
+                Image gearimg = Properties.Resources.Two_gear_icon;
+                cfgbtn.BackgroundImage = gearimg;
+                cfgbtn.Width = 25;
+                cfgbtn.Height = 25;
+                cfgbtn.Location = new Point(125, 0);
+                cfgbtn.FlatAppearance.BorderSize = 0;
+                cfgbtn.FlatStyle = FlatStyle.Flat;
+                cfgbtn.BackgroundImageLayout = ImageLayout.Stretch;
                 var combobox = new ComboBox();
                 var label1 = new Label();
                 var blockname = new Label();
                 blockname.Text = name;
-                blockname.Location = new Point(250, 70);
+                blockname.ForeColor = Color.Green;
+                blockname.Location = new Point(5, 80);
                 label1.Text = "следующий блок";
                 label1.Width = 200;
                 label1.Location = new System.Drawing.Point(5, 0);
                 combobox.Location = new System.Drawing.Point(5,25);
                 var button = new Button();
+                button.FlatStyle = FlatStyle.Flat;
+                button.FlatAppearance.BorderSize = 0;
                 button.Text = "Исполнить";
                 button.Location = new Point(0,50);
                 button.Click += new EventHandler(btn_executeClicked);
@@ -77,6 +89,7 @@ namespace ApiArchitector
 
                 panel.Name = name;
                 panelList.Add(panel.Name);
+                panel.Controls.Add(cfgbtn);
                 panel.Controls.Add(button);
                 panel.Controls.Add(blockname);
                 panel.Controls.Add(label1);
@@ -169,5 +182,6 @@ namespace ApiArchitector
                 }
             }
         }
+
     }
 }

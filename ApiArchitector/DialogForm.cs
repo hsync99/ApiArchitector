@@ -51,5 +51,10 @@ namespace ApiArchitector
             DialogResult = DialogResult.Cancel;
             Close();    
         }
+
+        private void DialogForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
