@@ -67,6 +67,7 @@ namespace ApiArchitector
                 cfgbtn.FlatAppearance.BorderSize = 0;
                 cfgbtn.FlatStyle = FlatStyle.Flat;
                 cfgbtn.BackgroundImageLayout = ImageLayout.Stretch;
+                cfgbtn.Click += new EventHandler(cfgbuttonclicked);
                 var combobox = new ComboBox();
                 var label1 = new Label();
                 var blockname = new Label();
@@ -105,7 +106,10 @@ namespace ApiArchitector
         private void dialogClosed(object sender, FormClosingEventArgs e) { 
             
         }
-
+        private void cfgbuttonclicked(object sender, EventArgs e) { 
+            BlockConfigurationForm cfgform = new BlockConfigurationForm();
+            cfgform.ShowDialog();
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
            
