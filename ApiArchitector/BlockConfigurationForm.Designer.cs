@@ -34,8 +34,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_body = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +93,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -100,7 +104,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.tb_body);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -109,16 +113,38 @@
             this.tabPage2.Text = "Body";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tb_body
             // 
-            this.textBox1.Font = new System.Drawing.Font("Corbel", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.textBox1.Location = new System.Drawing.Point(26, 33);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(1822, 835);
-            this.textBox1.TabIndex = 0;
+            this.tb_body.Font = new System.Drawing.Font("Corbel", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tb_body.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.tb_body.Location = new System.Drawing.Point(26, 33);
+            this.tb_body.Multiline = true;
+            this.tb_body.Name = "tb_body";
+            this.tb_body.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tb_body.Size = new System.Drawing.Size(1822, 835);
+            this.tb_body.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.ForeColor = System.Drawing.Color.Green;
+            this.button1.Location = new System.Drawing.Point(12, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "SAVE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(14, 15);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(224, 24);
+            this.comboBox1.TabIndex = 0;
             // 
             // BlockConfigurationForm
             // 
@@ -126,6 +152,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_request_type);
@@ -136,6 +163,7 @@
             this.Text = "BlockConfigurationForm";
             this.TopMost = true;
             this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -150,6 +178,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_body;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
